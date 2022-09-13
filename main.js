@@ -1,39 +1,74 @@
-// function for addition
-function addFunction(a, b) {
-    return a + b;
-}
-console.log(addFunction(5, 5));
+// calculator screen
+let operator = "";
+let currentNum = "";
+let previousNum = "";
 
-// function for subtraction
-function minusFunction(a, b) {
-    return a - b;
-}
-console.log(minusFunction(10, 5));
+let currentDisplayNumber = document.querySelector(".current");
+let previousDisplayNumber = document.querySelector(".previous");
 
-// function for multiplication
-function multiplyFunction(a, b) {
-    return a * b;
-}
-console.log(multiplyFunction(10, 10));
+// buttons
+let clear = document.querySelector(".clear");
+let equal = document.querySelector(".equal");
+let decimal = document.querySelector(".decimal");
+let numbers = document.querySelectorAll(".number");
+let operators = document.querySelectorAll(".operator");
 
-// function for division
-function divideFunction(a, b) {
-    return a / b;
-}
-console.log(divideFunction(50, 2));
+// event listener for clear button
+clear.addEventListener("click", function() {
+    previousNum = "";
+    currentNum = "";
+    operator = "";
+    previousDisplayNumber.textContent = currentNum;
+    currentDisplayNumber.textContent = currentNum;
+})
 
-// function for operate
-function operateFunction(operator, a, b) {
-    if(operator === '+') {
-        return addFunction(a, b);
-    } else if(operator === '-') {
-        return minusFunction(a, b);
-    } else if(operator === '/') {
-        return divideFunction(a, b);
-    } else if(operator === '*') {
-        return multiplyFunction(a, b);
-    } else {
-        return "Invalid Operator"
+//event listener for number buttons
+numbers.forEach((number) => {
+    number.addEventListener("click", function(e) {
+        handleNumber(e.target.textContent);
+    });
+});
+
+function handleNumber(num){
+    if(currentNum.length <= 11){
+        currentNum += num;
+        currentDisplayNumber.textContent = currentNum;
     }
-};
-console.log(operateFunction("-", 10, 10));
+}
+
+// event listener for operator buttons
+operators.forEach((operator) => {
+    operator.addEventListener("click", function(e) {
+        handleOperator(e.target.textContent);
+    });
+});
+
+function handleOperator(op) {
+    operator = op;
+    previousNum = currentNum;
+    previousDisplayNumber.textContent = previousNum + " " + operator;
+    currentNum = "";
+    currentDisplayNumber.textContent = "";
+}
+
+// event listener for equal button
+// when = button is clicked it calls the calculate function
+equal.addEventListener("click", calculate);
+
+function calculate() {
+    //convert our string values to numbers in order to do mathematical operations
+    previousNum = Number(previousNum);
+    currentNum = Number(currentNum);
+
+    if (operator === '+'){
+        previousNum += currentNum;
+    } else if (operator === '-') {
+        previousNum -= currentNum;
+    } else if (operator === 'x') {
+        previousNum *= currentNum;
+    } else if (operator === '/') {
+        previousNum /= currentNum;
+    };
+    previousDisplayNumber.textContent = "";
+    currentDisplayNumber.textContent = previousNum;
+}
