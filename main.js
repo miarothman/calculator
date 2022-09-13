@@ -14,14 +14,16 @@ let numbers = document.querySelectorAll(".number");
 let operators = document.querySelectorAll(".operator");
 
 // event listener for clear button
-clear.addEventListener("click", function() {
+// when C button is clicked, fires clearCalculator function
+clear.addEventListener("click", clearCalculator);
+
+function clearCalculator() {
     previousNum = "";
     currentNum = "";
     operator = "";
-    previousDisplayNumber.textContent = currentNum;
-    currentDisplayNumber.textContent = currentNum;
-})
-
+    previousDisplayNumber.textContent = "";
+    currentDisplayNumber.textContent = "0";
+}
 //event listener for number buttons
 numbers.forEach((number) => {
     number.addEventListener("click", function(e) {
@@ -52,8 +54,13 @@ function handleOperator(op) {
 }
 
 // event listener for equal button
-// when = button is clicked it calls the calculate function
-equal.addEventListener("click", calculate);
+// when = button is clicked it checks to see if there is a previous and current number entered
+// if yes, then calls the calculate function to perform the mathematical calculations
+equal.addEventListener("click", () => {
+    if (currentNum != "" && previousNum != "") {
+        calculate();
+    }
+});
 
 function calculate() {
     //convert our string values to numbers in order to do mathematical operations
@@ -67,8 +74,31 @@ function calculate() {
     } else if (operator === 'x') {
         previousNum *= currentNum;
     } else if (operator === '/') {
+        if (currentNum <= 0){
+            previousNum = "Error";
+            displayResults();
+            return;
+        }
         previousNum /= currentNum;
-    };
+    }
+    // rounds the number values
+    previousNum = roundNumber(previousNum);
+    //convert number values we converted originally back to strings
+    previousNum = previousNum.toString();
+    displayResults();
+}
+
+//function that rounds our numbers to the 6th decimal
+function roundNumber (num) {
+    return Math.round(num * 100000) / 100000;
+}
+
+function displayResults(){
     previousDisplayNumber.textContent = "";
-    currentDisplayNumber.textContent = previousNum;
+    operator = "";
+    if (previousNum.length <= 11) {
+        currentDisplayNumber.textContent = previousNum;
+    } else {
+        currentDisplayNumber.textContent = previousNum.slice(0, 11) + "...";
+    }    
 }
