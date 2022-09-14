@@ -24,6 +24,7 @@ function clearCalculator() {
     previousDisplayNumber.textContent = "";
     currentDisplayNumber.textContent = "0";
 }
+
 //event listener for number buttons
 numbers.forEach((number) => {
     number.addEventListener("click", function(e) {
@@ -51,6 +52,20 @@ function handleOperator(op) {
     previousDisplayNumber.textContent = previousNum + " " + operator;
     currentNum = "";
     currentDisplayNumber.textContent = "";
+}
+
+//event listener for decimal button
+decimal.addEventListener("click", () => {
+    addDecimal();
+});
+
+// function to add decimal
+function addDecimal() {
+    if (!currentNum.includes(".")){
+        currentNum = currentNum + ".";
+        //update display
+        currentDisplayNumber.textContent = currentNum;
+    }
 }
 
 // event listener for equal button
@@ -93,6 +108,7 @@ function roundNumber (num) {
     return Math.round(num * 100000) / 100000;
 }
 
+//function that displays results within calculator screen
 function displayResults(){
     previousDisplayNumber.textContent = "";
     operator = "";
