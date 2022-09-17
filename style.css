@@ -1,40 +1,53 @@
 body {
-    color: #fff;
+    color: #000;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100vw;
     height: 100vh;    
-    background-color: #000;
+    background-color: #fff;
 }
 
-h1 {
+#title {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 2rem;
-    line-height: 5rem;
+    font-size: 3rem;
+    margin-bottom: 50px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    color: #08407B;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 2px 5px 5px rgba(108, 122, 137,0.6);
 }
 
 .calculator {
-    border: 1px solid #000;
+    padding: 40px 25px 50px 25px;
+    border: 1px solid grey;
+    border-radius: 50px;
+    width: auto;
+    height: 470px;
+    box-shadow: 5px 5px 5px grey;
+    background-color: #7FCDED;
 }
 
 button {
-    width: 100px;
-    height: 50px;
+    width: 80px;
+    height: 60px;
     margin: 5px;
-    border: 2px solid #fff;
     border-radius: 5px;
-    background-color: #000;
+    background-color: #fff;
     font-size: 1rem;
-    color: #fff;
+    color: grey;
+    border: 1px solid grey;
     transition-duration: 0.4s;
+    box-shadow: 0px 3px 3px grey;
 }
 
 button:hover {
-    background-color: #fff;
-    color: #000;
-    border: 2px solid #fff;
+    background-color: grey;
+    color: #fff;
+    border: 1px solid #fff;
 }
 
 .first-row {
@@ -50,30 +63,35 @@ button:hover {
     align-items: flex-end;
     flex-direction: column;
     font-family: 'Courier New', Courier, monospace;
-    margin: 7px;
+    margin: 15px;
     padding-right: 5px;
     padding-left: 5px;
     border-radius: 5px;
-    border: 2px solid #fff;
-    width: 318px;
-    height: 50px;
-    color: #fff;
+    border: 2px solid grey;
+    width: 100%;
+    height: 100px;
+    color: #000;
+    background-color: #fff;
+    box-shadow: 0px 3px 3px grey;
 }
 
 .previous {
-    color: #fff;
-    font-size: 15px;
-}
-
-.current {
-    color: #fff;
+    color: #000;
     font-size: 25px;
 }
 
-.operator, .decimal, .equal {
-    background-color: #ff64b8;
+.current {
+    color: #000;
+    font-size: 35px;
 }
 
-.clear {
-    background-color: #b0b3b8;
+.equal {
+    color: #fff;
+    width: 175px;
+    background-color: #F7931D;
+}
+
+.operator, .decimal, .clear, .delete, .percent {
+    background-color: #08407B;
+    color: #fff;
 }
