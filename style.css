@@ -37,7 +37,7 @@ button {
     margin: 5px;
     border-radius: 5px;
     background-color: #fff;
-    font-size: 1rem;
+    font-size: 20px;
     color: grey;
     border: 1px solid grey;
     transition-duration: 0.4s;
@@ -59,7 +59,7 @@ button:hover {
 
 .screen {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
     align-items: flex-end;
     flex-direction: column;
     font-family: 'Courier New', Courier, monospace;
@@ -76,12 +76,13 @@ button:hover {
 }
 
 .previous {
-    color: #000;
-    font-size: 25px;
+    color: #F7931D;
+    font-size: 28px;
+
 }
 
 .current {
-    color: #000;
+    color: #08407B;
     font-size: 35px;
 }
 

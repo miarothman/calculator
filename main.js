@@ -8,6 +8,7 @@ let previousDisplayNumber = document.querySelector(".previous");
 
 // buttons
 let clear = document.querySelector(".clear");
+let backspace = document.querySelector(".delete");
 let equal = document.querySelector(".equal");
 let decimal = document.querySelector(".decimal");
 let numbers = document.querySelectorAll(".number");
@@ -52,6 +53,9 @@ function handleOperator(op) {
     previousDisplayNumber.textContent = previousNum + " " + operator;
     currentNum = "";
     currentDisplayNumber.textContent = "";
+    
+    
+    
 }
 
 //event listener for decimal button
