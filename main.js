@@ -1,22 +1,10 @@
-// calculator screen
-let operator = "";
-let currentNum = "";
-let previousNum = "";
-
-let currentDisplayNumber = document.querySelector(".current");
-let previousDisplayNumber = document.querySelector(".previous");
-
-// buttons
-let clear = document.querySelector(".clear");
-let backspace = document.querySelector(".delete");
-let equal = document.querySelector(".equal");
-let decimal = document.querySelector(".decimal");
-let numbers = document.querySelectorAll(".number");
-let operators = document.querySelectorAll(".operator");
-
-// event listener for clear button
-// when C button is clicked, fires clearCalculator function
-clear.addEventListener("click", clearCalculator);
+function clearCalculator() {
+    previousNum = "";
+    currentNum = "";
+    operator = "";
+    previousDisplayNumber.textContent = "";
+    currentDisplayNumber.textContent = "0";
+}
 
 function clearCalculator() {
     previousNum = "";
@@ -26,13 +14,6 @@ function clearCalculator() {
     currentDisplayNumber.textContent = "0";
 }
 
-//event listener for number buttons
-numbers.forEach((number) => {
-    number.addEventListener("click", function(e) {
-        handleNumber(e.target.textContent);
-    });
-});
-
 function handleNumber(num){
     if(currentNum.length <= 11){
         currentNum += num;
@@ -40,28 +21,13 @@ function handleNumber(num){
     }
 }
 
-// event listener for operator buttons
-operators.forEach((operator) => {
-    operator.addEventListener("click", function(e) {
-        handleOperator(e.target.textContent);
-    });
-});
-
 function handleOperator(op) {
     operator = op;
     previousNum = currentNum;
     previousDisplayNumber.textContent = previousNum + " " + operator;
     currentNum = "";
     currentDisplayNumber.textContent = "";
-    
-    
-    
 }
-
-//event listener for decimal button
-decimal.addEventListener("click", () => {
-    addDecimal();
-});
 
 // function to add decimal
 function addDecimal() {
@@ -71,15 +37,6 @@ function addDecimal() {
         currentDisplayNumber.textContent = currentNum;
     }
 }
-
-// event listener for equal button
-// when = button is clicked it checks to see if there is a previous and current number entered
-// if yes, then calls the calculate function to perform the mathematical calculations
-equal.addEventListener("click", () => {
-    if (currentNum != "" && previousNum != "") {
-        calculate();
-    }
-});
 
 function calculate() {
     //convert our string values to numbers in order to do mathematical operations
@@ -107,6 +64,7 @@ function calculate() {
     displayResults();
 }
 
+
 //function that rounds our numbers to the 6th decimal
 function roundNumber (num) {
     return Math.round(num * 100000) / 100000;
@@ -120,5 +78,55 @@ function displayResults(){
         currentDisplayNumber.textContent = previousNum;
     } else {
         currentDisplayNumber.textContent = previousNum.slice(0, 11) + "...";
-    }    
+    } 
 }
+
+// calculator screen
+let operator = "";
+let currentNum = "";
+let previousNum = "";
+
+let currentDisplayNumber = document.querySelector(".current");
+let previousDisplayNumber = document.querySelector(".previous");
+
+// buttons
+let clear = document.querySelector(".clear");
+let backspace = document.querySelector(".delete");
+let equal = document.querySelector(".equal");
+let decimal = document.querySelector(".decimal");
+let numbers = document.querySelectorAll(".number");
+let operators = document.querySelectorAll(".operator");
+
+
+// event listener for clear button
+// when C button is clicked, fires clearCalculator function
+clear.addEventListener("click", clearCalculator);
+
+//event listener for number buttons
+numbers.forEach((number) => {
+    number.addEventListener("click", function(e) {
+        handleNumber(e.target.textContent);
+    });
+});
+
+// event listener for operator buttons
+operators.forEach((operator) => {
+    operator.addEventListener("click", function(e) {
+        handleOperator(e.target.textContent);
+    });
+});
+
+//event listener for decimal button
+decimal.addEventListener("click", () => {
+    addDecimal();
+});
+
+// event listener for equal button
+// when = button is clicked it checks to see if there is a previous and current number entered
+// if yes, then calls the calculate function to perform the mathematical calculations
+equal.addEventListener("click", () => {
+    if (currentNum !== "" && previousNum !== "") {
+        calculate();
+        
+    }
+});
