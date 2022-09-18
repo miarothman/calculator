@@ -6,14 +6,6 @@ function clearCalculator() {
     currentDisplayNumber.textContent = "0";
 }
 
-function clearCalculator() {
-    previousNum = "";
-    currentNum = "";
-    operator = "";
-    previousDisplayNumber.textContent = "";
-    currentDisplayNumber.textContent = "0";
-}
-
 function handleNumber(num){
     if(currentNum.length <= 11){
         currentNum += num;
@@ -44,7 +36,7 @@ function calculate() {
     currentNum = Number(currentNum);
 
     if (operator === '+'){
-        previousNum += currentNum;
+        previousNum = previousNum + currentNum;
     } else if (operator === '-') {
         previousNum -= currentNum;
     } else if (operator === 'x') {
@@ -74,11 +66,13 @@ function roundNumber (num) {
 function displayResults(){
     previousDisplayNumber.textContent = "";
     operator = "";
+    currentNum = previousNum;
+    currentDisplayNumber.textContent = previousNum;
     if (previousNum.length <= 11) {
         currentDisplayNumber.textContent = previousNum;
     } else {
         currentDisplayNumber.textContent = previousNum.slice(0, 11) + "...";
-    } 
+    }
 }
 
 // calculator screen
@@ -127,6 +121,5 @@ decimal.addEventListener("click", () => {
 equal.addEventListener("click", () => {
     if (currentNum !== "" && previousNum !== "") {
         calculate();
-        
     }
 });
